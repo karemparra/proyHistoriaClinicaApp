@@ -2,6 +2,7 @@ package co.edu.utp.isc.gia.HistoriaClinicaApp.service.impl;
 
 import co.edu.utp.isc.gia.HistoriaClinicaApp.dto.PacienteDTO;
 import co.edu.utp.isc.gia.HistoriaClinicaApp.entities.PacienteEntity;
+import co.edu.utp.isc.gia.HistoriaClinicaApp.entities.UsuarioEntity;
 import co.edu.utp.isc.gia.HistoriaClinicaApp.repository.PacienteRepository;
 import co.edu.utp.isc.gia.HistoriaClinicaApp.service.PacienteService;
 import org.modelmapper.ModelMapper;
@@ -41,6 +42,18 @@ public class PacienteServiceImpl implements PacienteService {
             return null;
         }
     }
+
+    @Override
+    public PacienteDTO eliminarPaciente(PacienteDTO pacienteDTO) {
+        Optional<PacienteEntity> optionalPacienteEntity = this.pacienteRepository.findByCedula(pacienteDTO.getCedula());
+        if(optionalPacienteEntity.isPresent()){
+            PacienteEntity pacienteEntity = optionalPacienteEntity.get();
+            this.pacienteRepository.deleteById(pacienteEntity.getId());
+            return pacienteDTO;
+        } else {
+            return null;
+        }
+    }
 }
 
 
@@ -57,4 +70,17 @@ public class PacienteServiceImpl implements PacienteService {
         "tipoSangre": "O+",
         "eps": "Sura"
 }
+
+{
+        "cedula": 41921790,
+        "nombre": "Yaneth",
+        "apellido": "Moreno",
+        "email": "yaneth@gmail.com",
+        "telefono": "3104321234",
+        "direccion": "vía jardines, #35-15",
+        "fechaNacimiento": "1970-11-20",
+        "enfermedades": "presión alta, migraña cronica",
+        "tipoSangre": "B+",
+        "eps": "Sura"
+    }
 */

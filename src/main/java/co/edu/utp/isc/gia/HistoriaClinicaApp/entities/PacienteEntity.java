@@ -28,4 +28,8 @@ public class PacienteEntity {
     private String enfermedades;
     private String tipoSangre;
     private String eps;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.MERGE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<HistoriaClinicaEntity> historiasClinicas;
+
 }

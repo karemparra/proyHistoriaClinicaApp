@@ -46,6 +46,19 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
     }
 
+    @Override
+    public UsuarioDTO actualizarUsuario(UsuarioDTO usuarioDTO) {
+        Optional<UsuarioEntity> optionalUsuarioEntity = this.usuarioRepository.findByCedula(usuarioDTO.getCedula());
+        if(optionalUsuarioEntity.isPresent()){
+            usuarioDTO.setId(optionalUsuarioEntity.get().getId());
+            UsuarioEntity usuarioEntity = modelMapper.map(usuarioDTO, UsuarioEntity.class);
+            UsuarioEntity usuarioEntityDB = this.usuarioRepository.save(usuarioEntity);
+            return modelMapper.map(usuarioEntityDB, UsuarioDTO.class);
+        } else {
+            return null;
+        }
+    }
+
 
 }
 

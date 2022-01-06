@@ -22,4 +22,9 @@ public class PacienteController {
     public PacienteDTO crearPaciente(@RequestBody PacienteDTO pacienteDTO){
         return pacienteService.crearPaciente(pacienteDTO);
     }
+
+    @DeleteMapping("eliminarPaciente")
+    public PacienteDTO eliminarPaciente(@RequestBody PacienteDTO pacienteDTO){
+        return pacienteService.eliminarPaciente(pacienteDTO);
+    }
 }

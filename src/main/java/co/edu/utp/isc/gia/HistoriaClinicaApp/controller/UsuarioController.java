@@ -23,4 +23,8 @@ public class UsuarioController {
         return usuarioService.crearUsuario(usuarioDTO);
     }
 
+    @PutMapping("actualizarUsuario")
+    public UsuarioDTO actualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.actualizarUsuario(usuarioDTO);
+    }
 }
